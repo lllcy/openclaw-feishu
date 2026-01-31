@@ -10,7 +10,7 @@ import type {
 } from "clawdbot/plugin-sdk";
 import {
   applyAccountNameToChannelSection,
-  buildChannelConfigSchema,
+
   DEFAULT_ACCOUNT_ID,
   deleteAccountFromConfigSection,
   formatPairingApproveHint,
@@ -26,7 +26,7 @@ import {
   resolveFeishuAccount,
 } from "./accounts.js";
 import type { ResolvedFeishuAccount } from "./types.js";
-import { FeishuConfigSchema } from "./config-schema.js";
+import { FeishuConfigJsonSchema } from "./config-json-schema.js";
 import { feishuOnboardingAdapter } from "./onboarding.js";
 import { probeFeishu } from "./probe.js";
 import { sendTextMessage, sendMediaMessage } from "./send.js";
@@ -105,7 +105,7 @@ export const feishuPlugin: ChannelPlugin<ResolvedFeishuAccount> = {
     blockStreaming: true,
   },
   reload: { configPrefixes: ["channels.feishu"] },
-  configSchema: buildChannelConfigSchema(FeishuConfigSchema),
+  configSchema: { schema: FeishuConfigJsonSchema },
   config: {
     listAccountIds: (cfg) => listFeishuAccountIds(cfg as ClawdbotConfig),
     resolveAccount: (cfg, accountId) =>

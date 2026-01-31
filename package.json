@@ -16,6 +16,7 @@
   "keywords": [
     "moltbot",
     "clawdbot",
+    "openclaw",
     "feishu",
     "lark",
     "飞书",
@@ -39,10 +40,34 @@
   "files": [
     "dist",
     "clawdbot.plugin.json",
+    "openclaw.plugin.json",
     "README.md",
     "LICENSE"
   ],
   "clawdbot": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "channel": {
+      "id": "feishu",
+      "label": "Feishu",
+      "selectionLabel": "Feishu (飞书)",
+      "docsPath": "/channels/feishu",
+      "docsLabel": "feishu",
+      "blurb": "Feishu (Lark) messaging platform with Bot WebSocket API.",
+      "aliases": [
+        "lark",
+        "fs"
+      ],
+      "order": 85,
+      "quickstartAllowFrom": true
+    },
+    "install": {
+      "npmSpec": "moltbot-feishu",
+      "defaultChoice": "npm"
+    }
+  },
+  "openclaw": {
     "extensions": [
       "./dist/index.js"
     ],
@@ -72,16 +97,19 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "clawdbot": ">=2026.1.20"
+    "clawdbot": ">=2026.1.20",
+    "openclaw": ">=2026.1.29"
   },
   "peerDependenciesMeta": {
     "clawdbot": {
-      "optional": false
+      "optional": true
+    },
+    "openclaw": {
+      "optional": true
     }
   },
   "dependencies": {
-    "@larksuiteoapi/node-sdk": "^1.56.1",
-    "zod": "^3.24.0"
+    "@larksuiteoapi/node-sdk": "^1.56.1"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
