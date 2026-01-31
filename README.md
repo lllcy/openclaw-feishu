@@ -2,47 +2,45 @@
 
 [![npm version](https://img.shields.io/npm/v/moltbot-feishu.svg)](https://www.npmjs.com/package/moltbot-feishu)
 
-让 Clawdbot/Moltbot AI 助手接入飞书，一行命令搞定。
+> **🆕 2025.1.31 更新**：v0.2.0 多版本兼容，修复 Zod schema 问题，支持 Clawdbot / OpenClaw / Moltbot
 
-Connect your Clawdbot/Moltbot AI assistant to Feishu (Lark) with one command.
-
----
-
-## 🚀 最快安装方式 / Quickest Install
-
-**非技术用户**：直接把这段话发给你的 Clawdbot：
-
-> 帮我安装飞书插件：https://github.com/AlexAnys/moltbot-feishu
-
-Clawdbot 会自动完成安装和配置引导。
-
-**For non-technical users**: Just send this to your Clawdbot:
-
-> Install the Feishu plugin for me: https://github.com/AlexAnys/moltbot-feishu
+让 AI 助手接入飞书，无需服务器。  
+Connect your AI assistant to Feishu (Lark) — no server required.
 
 ---
 
-## 手动安装 / Manual Install
+## 🚀 三种安装方式 / Three Install Methods
 
-```bash
-clawdbot plugins install moltbot-feishu
-```
+| 方式 | 命令 | 适合 |
+|------|------|------|
+| **① Clawdbot 一键安装** | 告诉你的 Clawdbot：`帮我安装飞书插件` | 新手首选，全自动 |
+| **② npm 插件安装** | `clawdbot plugins install moltbot-feishu` | 开发者，一体化管理 |
+| **③ 独立桥接** | [feishu-openclaw](https://github.com/AlexAnys/feishu-openclaw) | 求稳/隔离部署 |
+
+### 方式对比 / Comparison
+
+| | 插件 (①②) | 桥接 (③) |
+|---|---|---|
+| 进程数 | 1 个（内置 Gateway） | 2 个（独立进程） |
+| 崩溃影响 | 影响 Gateway | 互不影响 |
+| 配置方式 | `clawdbot config` | 环境变量 |
+| 适合场景 | 日常使用 | 生产/隔离部署 |
 
 ---
 
-## 你必须做的事 / What You Must Do
+## 📋 你必须做的事 / What You Must Do
 
 ### 1. 创建飞书机器人 / Create Feishu Bot
 
 1. [飞书开放平台](https://open.feishu.cn/app) → 创建企业自建应用
 2. 添加「机器人」能力
-3. **权限配置**，开启：
-   - `im:message`（发消息）
-   - `im:message.group_at_msg`（群聊@消息）  
-   - `im:message.p2p_msg`（私聊消息）
-4. **事件订阅** → `im.message.receive_v1` → ⚠️ 选「**使用长连接接收事件**」
+3. **权限配置** — 开启：
+   - `im:message`
+   - `im:message.group_at_msg`
+   - `im:message.p2p_msg`
+4. **事件订阅** → `im.message.receive_v1` → ⚠️ **选「长连接」不是 webhook**
 5. 版本管理 → 创建版本 → 发布上线
-6. 记下 **App ID**（`cli_xxx`）和 **App Secret**
+6. 记下 **App ID** (`cli_xxx`) 和 **App Secret**
 
 ### 2. 配置 / Configure
 
@@ -59,29 +57,29 @@ clawdbot gateway restart
 
 ---
 
-## ⚠️ 常见问题 / Common Issues
+## ⚠️ 常见问题 / Troubleshooting
 
-### 收不到消息？/ Not receiving messages?
+### 收不到消息？ / Not receiving messages?
 
 | 检查项 | Check |
 |--------|-------|
 | 应用已发布（不是草稿） | App is published (not draft) |
-| 事件订阅选的是「长连接」**不是** webhook | Event subscription uses "long connection", **not** webhook |
-| 权限都已开启 | All permissions are enabled |
+| 事件订阅用「长连接」 | Event uses "long connection" |
+| 权限都已开启 | All permissions enabled |
 
-### 配置报错 `not configured`？
+### 报错 `not configured`？
 
-⚠️ **必须用 `appSecret`，不是 `appSecretPath`**
+**必须用 `appSecret`，不是 `appSecretPath`**：
 
 ```bash
 # ✅ 正确
 clawdbot config set channels.feishu.appSecret "你的secret"
 
-# ❌ 错误 — 插件不支持从文件读取
+# ❌ 错误 — 插件不支持
 clawdbot config set channels.feishu.appSecretPath "/path/to/file"
 ```
 
-### 群聊不回复？/ Bot not responding in groups?
+### 群聊不回复？ / No response in groups?
 
 @机器人，或消息末尾加问号。
 
@@ -89,7 +87,7 @@ clawdbot config set channels.feishu.appSecretPath "/path/to/file"
 
 ## 特点 / Features
 
-- **无需服务器** — WebSocket 长连接，本地运行
+- **无需服务器** — WebSocket 长连接
 - **私聊+群聊** — 都支持
 - **图片文件** — 收发都行
 - **多账号** — 可同时接多个机器人
@@ -98,9 +96,11 @@ clawdbot config set channels.feishu.appSecretPath "/path/to/file"
 
 ## 链接 / Links
 
-- [Clawdbot 文档](https://docs.clawd.bot)
-- [飞书开放平台](https://open.feishu.cn/document/home/index)
-- [问题反馈 / Issues](https://github.com/AlexAnys/moltbot-feishu/issues)
+- 📦 [npm: moltbot-feishu](https://www.npmjs.com/package/moltbot-feishu)
+- 🔌 [GitHub: moltbot-feishu](https://github.com/AlexAnys/openclaw-feishu) (插件)
+- 🌉 [GitHub: feishu-openclaw](https://github.com/AlexAnys/feishu-openclaw) (桥接)
+- 📖 [Clawdbot 文档](https://docs.clawd.bot)
+- 🐛 [问题反馈](https://github.com/AlexAnys/openclaw-feishu/issues)
 
 ## License
 
