@@ -2,98 +2,106 @@
 
 [![npm version](https://img.shields.io/npm/v/moltbot-feishu.svg)](https://www.npmjs.com/package/moltbot-feishu)
 
-让你的Moltbot/CLawdbot AI 助手接入飞书，一行命令搞定。
+让 Clawdbot/Moltbot AI 助手接入飞书，一行命令搞定。
 
-## 特点
+Connect your Clawdbot/Moltbot AI assistant to Feishu (Lark) with one command.
 
-- **无需服务器** — 基于 WebSocket，本地运行即可
-- **私聊+群聊** — 都支持，群里@机器人或直接提问
-- **图片文件** — 收发都行
-- **多账号** — 可以同时接多个飞书机器人
+---
 
-## 快速开始
+## 🚀 最快安装方式 / Quickest Install
 
-### 1. 创建飞书机器人
+**非技术用户**：直接把这段话发给你的 Clawdbot：
 
-1. 打开 [飞书开放平台](https://open.feishu.cn/app) → 创建企业自建应用
-2. 添加「机器人」能力
-3. 权限配置，开启：
-   - `im:message`（发消息）
-   - `im:message.group_at_msg`（群聊@消息）
-   - `im:message.p2p_msg`（私聊消息）
-4. 事件订阅 → 添加 `im.message.receive_v1` → 选择「**使用长连接接收事件**」
-5. 版本管理 → 创建版本 → 申请上线
-6. 记下 **App ID**（cli_xxx）和 **App Secret**
+> 帮我安装飞书插件：https://github.com/AlexAnys/moltbot-feishu
 
-### 2. 安装插件
+Clawdbot 会自动完成安装和配置引导。
+
+**For non-technical users**: Just send this to your Clawdbot:
+
+> Install the Feishu plugin for me: https://github.com/AlexAnys/moltbot-feishu
+
+---
+
+## 手动安装 / Manual Install
 
 ```bash
 clawdbot plugins install moltbot-feishu
 ```
 
-### 3. 配置
+---
 
-运行向导：
+## 你必须做的事 / What You Must Do
 
-```bash
-clawdbot setup feishu
-```
+### 1. 创建飞书机器人 / Create Feishu Bot
 
-或者直接编辑 `clawdbot.json`：
+1. [飞书开放平台](https://open.feishu.cn/app) → 创建企业自建应用
+2. 添加「机器人」能力
+3. **权限配置**，开启：
+   - `im:message`（发消息）
+   - `im:message.group_at_msg`（群聊@消息）  
+   - `im:message.p2p_msg`（私聊消息）
+4. **事件订阅** → `im.message.receive_v1` → ⚠️ 选「**使用长连接接收事件**」
+5. 版本管理 → 创建版本 → 发布上线
+6. 记下 **App ID**（`cli_xxx`）和 **App Secret**
 
-```json
-{
-  "channels": {
-    "feishu": {
-      "enabled": true,
-      "appId": "cli_你的AppID",
-      "appSecret": "你的AppSecret"
-    }
-  }
-}
-```
-
-### 4. 启动
+### 2. 配置 / Configure
 
 ```bash
+clawdbot config set channels.feishu.enabled true --json
+clawdbot config set channels.feishu.appId "cli_你的AppID"
+clawdbot config set channels.feishu.appSecret "你的AppSecret"
 clawdbot gateway restart
 ```
 
-去飞书找你的机器人聊天吧 🎉
+### 3. 测试 / Test
 
-## 群聊说明
+去飞书私聊或群里 @机器人 🎉
 
-在群里，机器人不会回复每条消息（避免刷屏）。它只在以下情况回复：
+---
 
-- 被 @
-- 消息以问号结尾
-- 消息包含"帮"、"请"、"怎么"等求助词
+## ⚠️ 常见问题 / Common Issues
 
-## 常见问题
+### 收不到消息？/ Not receiving messages?
 
-**Q: 机器人收不到消息？**
+| 检查项 | Check |
+|--------|-------|
+| 应用已发布（不是草稿） | App is published (not draft) |
+| 事件订阅选的是「长连接」**不是** webhook | Event subscription uses "long connection", **not** webhook |
+| 权限都已开启 | All permissions are enabled |
 
-检查：
-1. 应用已发布上线（不是草稿状态）
-2. 事件订阅选的是「长连接」不是「webhook」
-3. 权限都开了
+### 配置报错 `not configured`？
 
-**Q: 群聊不回复？**
-
-试试 @机器人，或者在消息末尾加个问号。
-
-**Q: 怎么查看状态？**
+⚠️ **必须用 `appSecret`，不是 `appSecretPath`**
 
 ```bash
-clawdbot channels status feishu
+# ✅ 正确
+clawdbot config set channels.feishu.appSecret "你的secret"
+
+# ❌ 错误 — 插件不支持从文件读取
+clawdbot config set channels.feishu.appSecretPath "/path/to/file"
 ```
 
-## 链接
+### 群聊不回复？/ Bot not responding in groups?
 
-- [Moltbot 文档](https://docs.molt.bot)
-- [飞书开放平台文档](https://open.feishu.cn/document/home/index)
-- [问题反馈](https://github.com/AlexAnys/moltbot-feishu/issues)
+@机器人，或消息末尾加问号。
 
-## 协议
+---
+
+## 特点 / Features
+
+- **无需服务器** — WebSocket 长连接，本地运行
+- **私聊+群聊** — 都支持
+- **图片文件** — 收发都行
+- **多账号** — 可同时接多个机器人
+
+---
+
+## 链接 / Links
+
+- [Clawdbot 文档](https://docs.clawd.bot)
+- [飞书开放平台](https://open.feishu.cn/document/home/index)
+- [问题反馈 / Issues](https://github.com/AlexAnys/moltbot-feishu/issues)
+
+## License
 
 MIT
