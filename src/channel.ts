@@ -10,15 +10,14 @@ import type {
 } from "clawdbot/plugin-sdk";
 import {
   applyAccountNameToChannelSection,
-
   DEFAULT_ACCOUNT_ID,
   deleteAccountFromConfigSection,
   formatPairingApproveHint,
   migrateBaseNameToDefaultAccount,
   normalizeAccountId,
-  PAIRING_APPROVED_MESSAGE,
+  getPairingApprovedMessage,
   setAccountEnabledInConfigSection,
-} from "clawdbot/plugin-sdk";
+} from "./sdk-compat.js";
 
 import {
   listFeishuAccountIds,
@@ -279,7 +278,7 @@ export const feishuPlugin: ChannelPlugin<ResolvedFeishuAccount> = {
         throw new Error("Feishu credentials not configured");
       }
       const client = createFeishuClient(account);
-      await sendTextMessage(client, id, PAIRING_APPROVED_MESSAGE);
+      await sendTextMessage(client, id, getPairingApprovedMessage());
     },
   },
   outbound: {

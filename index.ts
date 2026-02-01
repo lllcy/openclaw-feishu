@@ -1,12 +1,12 @@
 /**
- * Feishu (Lark) channel plugin for Clawdbot/Moltbot.
+ * Feishu (Lark) channel plugin for Clawdbot/OpenClaw.
  *
  * Connects Feishu bots via WebSocket long-connection (no public server required).
  */
 
 import type { ClawdbotPluginApi } from "clawdbot/plugin-sdk";
 
-import { emptyPluginConfigSchema } from "clawdbot/plugin-sdk";
+import { emptyPluginConfigSchema } from "./src/sdk-compat.js";
 
 import { feishuDock, feishuPlugin } from "./src/channel.js";
 import { setFeishuRuntime } from "./src/runtime.js";

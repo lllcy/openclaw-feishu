@@ -6,10 +6,10 @@ import type {
   ClawdbotConfig,
 } from "clawdbot/plugin-sdk";
 import {
-  addWildcardAllowFrom,
   DEFAULT_ACCOUNT_ID,
   normalizeAccountId,
-} from "clawdbot/plugin-sdk";
+  addWildcardAllowFrom,
+} from "./sdk-compat.js";
 
 import {
   listFeishuAccountIds,
