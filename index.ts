@@ -6,7 +6,7 @@
 
 import type { ClawdbotPluginApi } from "clawdbot/plugin-sdk";
 
-import { emptyPluginConfigSchema } from "./src/sdk-compat.js";
+import { emptyPluginConfigSchema } from "./src/sdk.js";
 
 import { feishuDock, feishuPlugin } from "./src/channel.js";
 import { setFeishuRuntime } from "./src/runtime.js";

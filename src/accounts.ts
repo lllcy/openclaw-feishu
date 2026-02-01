@@ -3,7 +3,7 @@
  */
 
 import type { ClawdbotConfig } from "clawdbot/plugin-sdk";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "./sdk-compat.js";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "./sdk.js";
 
 import type {
   FeishuAccountConfig,

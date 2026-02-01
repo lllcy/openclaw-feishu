@@ -2,8 +2,11 @@
   "id": "feishu-openclaw",
   "name": "Feishu",
   "description": "Feishu (飞书/Lark) channel plugin — WebSocket long-connection bot",
-  "version": "0.4.0",
-  "channels": ["feishu"],
+  "version": "0.3.1",
+  "main": "dist/index.clawdbot.js",
+  "channels": [
+    "feishu"
+  ],
   "configSchema": {
     "type": "object",
     "additionalProperties": false,

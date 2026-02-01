@@ -15,9 +15,9 @@ import {
   formatPairingApproveHint,
   migrateBaseNameToDefaultAccount,
   normalizeAccountId,
-  getPairingApprovedMessage,
+  PAIRING_APPROVED_MESSAGE,
   setAccountEnabledInConfigSection,
-} from "./sdk-compat.js";
+} from "./sdk.js";
 
 import {
   listFeishuAccountIds,
@@ -278,7 +278,7 @@ export const feishuPlugin: ChannelPlugin<ResolvedFeishuAccount> = {
         throw new Error("Feishu credentials not configured");
       }
       const client = createFeishuClient(account);
-      await sendTextMessage(client, id, getPairingApprovedMessage());
+      await sendTextMessage(client, id, PAIRING_APPROVED_MESSAGE);
     },
   },
   outbound: {

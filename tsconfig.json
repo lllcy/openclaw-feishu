@@ -27,6 +27,9 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/sdk.openclaw.ts",
+    "src/sdk.clawdbot.ts",
+    "scripts"
   ]
 }

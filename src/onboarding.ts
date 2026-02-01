@@ -9,7 +9,7 @@ import {
   DEFAULT_ACCOUNT_ID,
   normalizeAccountId,
   addWildcardAllowFrom,
-} from "./sdk-compat.js";
+} from "./sdk.js";
 
 import {
   listFeishuAccountIds,
