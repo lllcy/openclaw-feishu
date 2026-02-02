@@ -16,7 +16,7 @@ Feishu × AI Assistant plugin — no server required
 **复制以下内容发给你的 OpenClaw：**
 
 ```
-帮我安装飞书插件，我的 App ID 是 cli_xxx，App Secret 是 xxx
+帮我安装飞书插件: https://github.com/AlexAnys/openclaw-feishu
 ```
 
 OpenClaw 会自动安装、配置、重启。
@@ -26,7 +26,7 @@ OpenClaw 会自动安装、配置、重启。
 **复制以下内容发给你的 Clawdbot：**
 
 ```
-帮我安装飞书插件，我的 App ID 是 cli_xxx，App Secret 是 xxx
+帮我安装飞书插件: https://github.com/AlexAnys/openclaw-feishu
 ```
 
 ---
@@ -42,7 +42,7 @@ OpenClaw 会自动安装、配置、重启。
    - `im:message.group_at_msg`
    - `im:message.p2p_msg`
 4. **版本管理** → 创建版本 → 发布上线
-5. 记下 **App ID** (`cli_xxx`) 和 **App Secret**
+5. 记下 **App ID** (`cli_xxx`) 和 **App Secret** 并发送给 openclaw/clawdbot 让其协助配置
 
 ### ⚠️ 事件订阅：必须在配置好 ID/Secret 后再设置
 
