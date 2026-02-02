@@ -31,18 +31,19 @@ OpenClaw 会自动安装、配置、重启。
 
 ---
 
-## ⚠️ 安装前必做 / Before Installing
+## ⚠️ 你必须做的事 / What You Must Do
 
 ### 创建飞书机器人（约 5 分钟）
 
 1. [飞书开放平台](https://open.feishu.cn/app) → **创建企业自建应用**
 2. 添加「**机器人**」能力
 3. **权限配置** → 开启：
-   - `im:message`
-   - `im:message.group_at_msg`
-   - `im:message.p2p_msg`
+   - `im:message`（发消息）
+   - `im:message.group_at_msg`（群聊@消息）
+   - `im:message.p2p_msg`（私聊消息）
 4. **版本管理** → 创建版本 → 发布上线
-5. 记下 **App ID** (`cli_xxx`) 和 **App Secret** 并发送给 openclaw/clawdbot 让其协助配置
+5. 记下 **App ID** (`cli_xxx`) 和 **App Secret**
+6. Openclaw/clawdbot 一键安装插件后，需要 Appid 和 App Secret 时发给它
 
 ### ⚠️ 事件订阅：必须在配置好 ID/Secret 后再设置
 
@@ -55,7 +56,8 @@ OpenClaw 会自动安装、配置、重启。
 配置好 ID/Secret 并重启 Gateway 后，再去飞书开放平台：
 1. **事件与回调** → 添加 `im.message.receive_v1`
 2. **订阅方式** → 选择 **「使用长连接接收事件」** ⚠️ 不是 Webhook！
-3. 保存
+3. **版本管理** → 创建版本 → 发布上线
+4. 测试：飞书私聊或群里@机器人
 
 ---
 
