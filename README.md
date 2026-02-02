@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/feishu-openclaw.svg)](https://www.npmjs.com/package/feishu-openclaw)
 
-> **🆕 2026.2.1**：v0.3.1 双构建架构，完整支持 OpenClaw / Clawdbot
+> **🆕 2026.2.1**：v0.3.1 双构建架构，完整支持 OpenClaw / Clawdbot  
 > 如果觉得有帮到你，欢迎🌟支持，让更多人看到
 
 飞书 × AI 助手插件 — 无需服务器  
