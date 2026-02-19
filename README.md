@@ -98,6 +98,7 @@ openclaw channels add
 {
   "scopes": {
     "tenant": [
+      "contact:contact.base:readonly",
       "aily:file:read",
       "aily:file:write",
       "application:application.app_message_stats.overview:readonly",
@@ -129,6 +130,8 @@ openclaw channels add
   }
 }
 ```
+
+
 
 > 已有的权限会自动跳过，不会重复添加。
 
