@@ -259,6 +259,7 @@ rm -f ~/Library/LaunchAgents/com.clawdbot.feishu-bridge.plist
 {
   "scopes": {
     "tenant": [
+      "contact:contact.base:readonly",
       "aily:file:read",
       "aily:file:write",
       "application:application.app_message_stats.overview:readonly",
